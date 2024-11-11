@@ -31,8 +31,8 @@ struct ContentView: View {
                 }
                 .padding()
                 // Button to View 2
-                NavigationLink(destination: SecondView()) {
-                    Text("Go to Second View")
+                NavigationLink(destination: Cry()) {
+                    Text("Go to Cry View")
                         .font(.title2)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
@@ -44,7 +44,7 @@ struct ContentView: View {
                 }
                 .padding()
                 // Button to View 3
-                NavigationLink(destination: think()) {
+                NavigationLink(destination: Think()) {
                     Text("Go to Think View")
                         .font(.title2)
                         .foregroundColor(.white)
