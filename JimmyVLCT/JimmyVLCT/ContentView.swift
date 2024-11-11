@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+   
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
@@ -17,8 +18,8 @@ struct ContentView: View {
                     .padding(.bottom, 40)
                 
                 // Button to View 1
-                NavigationLink(destination: FirstView()) {
-                    Text("Go to First View")
+                NavigationLink(destination: Laugh()) {
+                    Text("Go to Laugh View")
                         .font(.title2)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
@@ -43,8 +44,8 @@ struct ContentView: View {
                 }
                 .padding()
                 // Button to View 3
-                NavigationLink(destination: ThirdView()) {
-                    Text("Go to Third View")
+                NavigationLink(destination: think()) {
+                    Text("Go to Think View")
                         .font(.title2)
                         .foregroundColor(.white)
                         .frame(maxWidth: .infinity)
@@ -64,29 +65,8 @@ struct ContentView: View {
 }
 
 // Placeholder Views for the destination views
-struct FirstView: View {
-    var body: some View {
-        Text("This is the First View")
-            .font(.largeTitle)
-            .foregroundColor(.blue)
-    }
-}
 
-struct SecondView: View {
-    var body: some View {
-        Text("This is the Second View")
-            .font(.largeTitle)
-            .foregroundColor(.green)
-    }
-}
 
-struct ThirdView: View {
-    var body: some View {
-        Text("This is the Third View")
-            .font(.largeTitle)
-            .foregroundColor(.orange)
-    }
-}
 
 // Preview
 struct ContentView_Previews: PreviewProvider {
