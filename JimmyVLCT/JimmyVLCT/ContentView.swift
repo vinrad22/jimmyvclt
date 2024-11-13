@@ -1,75 +1,95 @@
-//
-//  ContentView.swift
-//  JimmyVLCT
-//
-//  Created by Vincent M. Radlicz on 11/4/24.
-//
-
 import SwiftUI
 
 struct ContentView: View {
-   
     var body: some View {
         NavigationStack {
-            VStack(spacing: 20) {
-              
-                Text("Welcome!")
+            VStack(spacing: 30) {
+                Text("Daily Emotions")
                     .font(.largeTitle)
                     .fontWeight(.bold)
-                    .padding(.bottom, 40)
+                    .padding(.top, 40)
+                    .foregroundColor(.cyan)
                 
-                // Button to View 1
-                NavigationLink(destination: Laugh()) {
-                    Text("Go to Laugh View")
-                        .font(.title2)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.blue)
-                        .cornerRadius(10)
-                        .shadow(radius: 5)
-                        
-                }
-                .padding()
-                // Button to View 2
-                NavigationLink(destination: Cry()) {
-                    Text("Go to Cry View")
-                        .font(.title2)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.green)
-                        .cornerRadius(10)
-                        .shadow(radius: 5)
-                        
-                }
-                .padding()
+                Text("Welcome!")
+                    .font(.title)
+                    .fontWeight(.semibold)
+                    .padding(.bottom, 30)
+                
+                
+                
                 // Button to View 3
-                NavigationLink(destination: Think()) {
-                    Text("Go to Think View")
-                        .font(.title2)
-                        .foregroundColor(.white)
-                        .frame(maxWidth: .infinity)
-                        .padding()
-                        .background(Color.orange)
-                        .cornerRadius(10)
-                        .shadow(radius: 5)
+                NavigationLink(destination: Laugh()) {
+                    HStack {
+                        Image(systemName: "smiley.fill")
+                            .font(.title2)
+                        Text("Happy")
+                            .font(.title2)
+                            .fontWeight(.semibold)
+                    }
+                    .foregroundColor(.white)
+                    .frame(maxWidth: .infinity)
+                    .padding()
+                    .background(
+                        LinearGradient(gradient: Gradient(colors: [.orange, .yellow]), startPoint: .leading, endPoint: .trailing)
+                    )
+                    .cornerRadius(15)
+                    .shadow(radius: 5)
+                    .padding(.horizontal)
                 }
                 .padding()
-                Spacer()
             }
-            .padding()
-            .navigationTitle("Main Menu")
-            .padding(.bottom, 40)
+          
+            
+               
+            // Button to View 1
+            NavigationLink(destination: Cry()) {
+                HStack {
+                    Image(systemName: "cloud.rain.fill")
+                        .font(.title2)
+                    Text("Cry")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                }
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(
+                    LinearGradient(gradient: Gradient(colors: [.blue, .purple]), startPoint: .leading, endPoint: .trailing)
+                )
+                .cornerRadius(15)
+                .shadow(radius: 5)
+                .padding()
+                
+            }
+            .padding(.horizontal)
+            
+            // Button to View 2
+            NavigationLink(destination: Think()) {
+                HStack {
+                    Image(systemName: "brain.head.profile")
+                        .font(.title2)
+                    Text("Think")
+                        .font(.title2)
+                        .fontWeight(.semibold)
+                }
+                .foregroundColor(.white)
+                .frame(maxWidth: .infinity)
+                .padding()
+                .background(
+                    LinearGradient(gradient: Gradient(colors: [.green, .teal]), startPoint: .leading, endPoint: .trailing)
+                )
+                .cornerRadius(15)
+                .shadow(radius: 5)
+                .padding()
+                
+                
+            }
+            .padding(.horizontal)
+         //   .background(Color(.systemGroupedBackground))
         }
+        
     }
 }
-#Preview {
-    ContentView()
-}
-
-// Placeholder Views for the destination views
-
 
 
 // Preview
@@ -78,4 +98,5 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
 
