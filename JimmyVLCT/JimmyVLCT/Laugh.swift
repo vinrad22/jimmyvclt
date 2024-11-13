@@ -52,5 +52,6 @@ struct Quote: Codable {
 }
 
 #Preview {
-    Laugh()
+    ContentView()
 }
+

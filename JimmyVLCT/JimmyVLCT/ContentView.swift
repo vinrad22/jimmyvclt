@@ -12,6 +12,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
+              
                 Text("Welcome!")
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -62,6 +63,9 @@ struct ContentView: View {
             .padding(.bottom, 40)
         }
     }
+}
+#Preview {
+    ContentView()
 }
 
 // Placeholder Views for the destination views
