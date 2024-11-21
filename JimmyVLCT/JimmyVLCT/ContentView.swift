@@ -1,9 +1,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     var body: some View {
         NavigationStack {
-            VStack(spacing: 30) {
+            VStack() {
                 Text("Daily Emotions")
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -13,12 +14,12 @@ struct ContentView: View {
                 Text("Welcome!")
                     .font(.title)
                     .fontWeight(.semibold)
-                    .padding(.bottom, 30)
+                   .padding(.bottom, 30)
                 
                 
                 
                 // Button to View 3
-                NavigationLink(destination: Laugh()) {
+                NavigationLink(destination: Laugh().navigationTitle("Laugh").foregroundStyle(.white).fontDesign(.serif)) {
                     HStack {
                         Image(systemName: "smiley.fill")
                             .font(.title2)
@@ -30,12 +31,13 @@ struct ContentView: View {
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(
-                        LinearGradient(gradient: Gradient(colors: [.orange, .yellow]), startPoint: .leading, endPoint: .trailing)
+                        LinearGradient(gradient: Gradient(colors: [.red, .yellow]), startPoint: .leading, endPoint: .trailing)
                     )
                     .cornerRadius(15)
                     .shadow(radius: 5)
                     .padding(.horizontal)
                 }
+                .navigationTitle("")
                 .padding()
             }
           
