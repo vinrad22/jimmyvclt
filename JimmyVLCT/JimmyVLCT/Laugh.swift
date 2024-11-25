@@ -7,6 +7,7 @@
 import WebKit
 import SwiftUI
 struct Laugh: View {
+   
     @State var animateGradient = false
     @State var quote = [Quote]()
     
@@ -17,10 +18,22 @@ struct Laugh: View {
     let happyVideos: [URL] = [ URL(string: "https://www.youtube.com/watch?v=y0sF5xhGreA")!, URL(string: "https://www.youtube.com/watch?v=BOK8T1HK4S8")!, URL(string: "https://www.youtube.com/watch?v=tpiyEe_CqB4")!, URL(string: "https://www.youtube.com/watch?v=cytJLvf-eVs")!, URL(string: "https://www.youtube.com/watch?v=n2JwA4Ngbf4")!, URL(string: "https://www.youtube.com/watch?v=pxn0wL_uSm4")!, URL(string: "https://www.youtube.com/watch?v=jfd9CDbB548")!, URL(string: "https://www.youtube.com/watch?v=RCgIYbBf0fU")!, URL(string: "https://www.youtube.com/watch?v=Gm3VCq1YGJg")!, URL(string: "https://www.youtube.com/watch?v=GJ62u8hvlEc")!, URL(string: "https://www.youtube.com/watch?v=IhD2QihfZOw")!, URL(string: "https://www.youtube.com/watch?v=RJIN7jCyspU")!, URL(string: "https://www.youtube.com/watch?v=VrFjxiQgq_4")!, URL(string: "https://www.youtube.com/watch?v=1Gv6Jqlwe9w")!, URL(string: "https://www.youtube.com/watch?v=Dd7FixvoKBw")!, URL(string: "https://www.youtube.com/watch?v=zB7MichlL1k")!, URL(string: "https://www.youtube.com/watch?v=hMQ2qGmJOVM")!, URL(string: "https://www.youtube.com/watch?v=9-GRzu6zbS0")!, URL(string: "https://www.youtube.com/watch?v=3znzIslrQXg")!, URL(string: "https://www.youtube.com/watch?v=SxwMTAy1gP0")!, URL(string: "https://www.youtube.com/watch?v=kvLXPcDZxE0")!, URL(string: "https://www.youtube.com/watch?v=pZ6o_eabZTg")! ]
     var body: some View {
         VStack {
-            Text(joke)
-                .padding()
-            Text(punch)
-                .padding()
+            VStack {
+                Text(joke)
+                    .padding()
+                   // .foregroundColor(Color())
+                Text(punch)
+                    .padding()
+            }
+          
+            .frame(width: 200, height: 200)
+            .background {
+                LinearGradient(gradient: Gradient(colors: [.orange, .yellow]), startPoint: .leading, endPoint: .trailing)
+                  
+            }
+            .cornerRadius(15)
+            .shadow(radius: 5)
+            .padding(.horizontal)
             Button(action: {
                 randomInt = Int.random(in: 0..<300)
                 joke = quote[randomInt].setup

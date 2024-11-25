@@ -1,10 +1,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    
+  
     var body: some View {
         NavigationStack {
             VStack() {
+                
                 Text("Daily Emotions")
                     .font(.largeTitle)
                     .fontWeight(.bold)
@@ -19,7 +20,7 @@ struct ContentView: View {
                 
                 
                 // Button to View 3
-                NavigationLink(destination: Laugh().navigationTitle("Laugh").foregroundStyle(.white).fontDesign(.serif)) {
+                NavigationLink(destination: Laugh().navigationTitle("Laugh").fontDesign(.serif)) {
                     HStack {
                         Image(systemName: "smiley.fill")
                             .font(.title2)
