@@ -57,7 +57,7 @@ struct ContentView: View {
                 .frame(maxWidth: .infinity)
                 .padding()
                 .background(
-                    LinearGradient(gradient: Gradient(colors: [.blue, .purple]), startPoint: .leading, endPoint: .trailing)
+                    LinearGradient(gradient: Gradient(colors:   [.blue, .purple]), startPoint: .leading, endPoint: .trailing)
                 )
                 .cornerRadius(15)
                 .shadow(radius: 5)
