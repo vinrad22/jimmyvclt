@@ -24,7 +24,7 @@ struct ContentView: View {
                     HStack {
                         Image(systemName: "smiley.fill")
                             .font(.title2)
-                        Text("Happy")
+                        Text("Laugh")
                             .font(.title2)
                             .fontWeight(.semibold)
                     }
