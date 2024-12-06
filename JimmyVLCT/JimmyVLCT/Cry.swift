@@ -18,7 +18,7 @@ struct Cry: View {
                     // Header
                     Text("Get Ready to Cry")
                         .font(.system(size: 36, weight: .bold, design: .serif))
-                        .foregroundColor(Color("HeaderColor"))
+                        .foregroundColor(Color(.black))
                         .multilineTextAlignment(.center)
                         .padding(.top, 20)
 
@@ -55,9 +55,9 @@ struct Cry: View {
                         }
                         .padding()
                         .background(RoundedRectangle(cornerRadius: 15)
-                            .fill(Color("MemeBackground"))
+                            .fill(Color(.purple))
                             .shadow(color: .gray.opacity(0.5), radius: 5))
-
+                            .opacity(0.9)
                         // Poem Section
                         VStack(alignment: .leading, spacing: 20) {
                             Text("Emotional Poem")
@@ -82,8 +82,9 @@ struct Cry: View {
                         }
                         .padding()
                         .background(RoundedRectangle(cornerRadius: 15)
-                            .fill(Color("PoemBackground"))
+                            .fill(Color(.blue))
                             .shadow(color: .gray.opacity(0.5), radius: 5))
+                        .opacity(0.9)
                     }
 
                     Spacer()
@@ -94,34 +95,49 @@ struct Cry: View {
                             Task { await fetchMeme() }
                         }) {
                             Label("Refresh Today's Sadness", systemImage: "arrow.clockwise")
-                                .font(.title3)
                                 .foregroundColor(.white)
+                                .frame(maxWidth: 500, maxHeight: 400)
                                 .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color.blue)
+                                .background(
+                                    LinearGradient(gradient: Gradient(colors: [.purple, .blue]), startPoint: .leading, endPoint: .trailing)
+                                )
                                 .cornerRadius(15)
+                                .shadow(radius: 5)
+//                                .padding(.horizontal)
+                                .padding()
                         }
 
                         Button(action: {
                             fetchPoem()
                         }) {
                             Label("Refresh Today's Poem", systemImage: "arrow.clockwise")
-                                .font(.title3)
                                 .foregroundColor(.white)
+                                .frame(maxWidth: 500, maxHeight: 400)
                                 .padding()
-                                .frame(maxWidth: .infinity)
-                                .background(Color.purple)
+                                .background(
+                                    LinearGradient(gradient: Gradient(colors: [.blue, .purple]), startPoint: .leading, endPoint: .trailing)
+                                )
                                 .cornerRadius(15)
+                                .shadow(radius: 5)
+//                                .padding(.horizontal)
+                                .padding()
                         }
                     }
                     .padding(.horizontal)
                 }
                 .padding()
             }
-            .background(LinearGradient(
-                gradient: Gradient(colors: [Color("BackgroundStart"), Color("BackgroundEnd")]),
-                startPoint: .top, endPoint: .bottom
-            ))
+            .background(
+                LinearGradient(
+                    gradient: Gradient(colors: [Color.purple, Color.blue]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .opacity(0.5) // Set the desired opacity here
+                .ignoresSafeArea()
+            
+
+            )
             .onAppear {
                 setupTimer()
                 Task {
@@ -170,26 +186,28 @@ struct Cry: View {
         isLoadingMeme = true
         defer { isLoadingMeme = false }
 
-        let urlString = "https://www.reddit.com/r/wholesomememes/random/.json"
+        let urlString = "https://www.reddit.com/r/wholesomememes/.json"
 
         guard let url = URL(string: urlString) else { return }
 
         do {
             let (data, _) = try await URLSession.shared.data(from: url)
-            if let jsonArray = try JSONSerialization.jsonObject(with: data, options: []) as? [[String: Any]],
-               let firstObject = jsonArray.first,
-               let dataDict = firstObject["data"] as? [String: Any],
-               let children = dataDict["children"] as? [[String: Any]],
-               let firstChild = children.first,
-               let childData = firstChild["data"] as? [String: Any] {
-
-                memeTitle = childData["title"] as? String ?? "No Title"
-                memeImageUrl = childData["url"] as? String ?? ""
+            if let jsonDict = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
+               let dataDict = jsonDict["data"] as? [String: Any],
+               let children = dataDict["children"] as? [[String: Any]] {
+                
+                // Randomly select a post from the fetched data
+                if let randomPost = children.randomElement(),
+                   let childData = randomPost["data"] as? [String: Any] {
+                    memeTitle = childData["title"] as? String ?? "No Title"
+                    memeImageUrl = childData["url"] as? String ?? ""
+                }
             }
         } catch {
             print("Error fetching today's sadness: \(error)")
         }
     }
+
 
     func fetchPoem() {
         guard let url = URL(string: "https://api.groq.com/openai/v1/chat/completions") else { return }
